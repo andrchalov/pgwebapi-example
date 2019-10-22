@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/mnt/deploy:ro
+      - ./pgwebapi/sql:/mnt/pgwebapi:rw
+      - ./database:/mnt/data:rw
+  nginx:
+    image: andrchalov/docker-openresty:1.11.2.2
+    ports:
+      - 8000:80
+    environment:
+      NGX_CONFIG: /mnt/conf
+    volumes:
+      - ./nginx:/mnt/conf:ro
+      - ./site:/mnt/site:ro
+      - ./pgwebapi/conf:/mnt/pgwebapi:ro
