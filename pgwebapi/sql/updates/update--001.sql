@@ -3,7 +3,7 @@
 -- update--001.sql
 --
 
-CREATE ROLE nginx WITH LOGIN;
+CREATE ROLE nginx WITH LOGIN ENCRYPTED PASSWORD 'nginx';
 CREATE SCHEMA _pgwebapi AUTHORIZATION :"schema_owner";
 CREATE EXTENSION IF NOT EXISTS hstore;
 
